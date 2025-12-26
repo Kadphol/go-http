@@ -9,6 +9,7 @@ import (
 
 	"github.com/Kadphol/go-http/internal/api"
 	"github.com/Kadphol/go-http/internal/store"
+	"github.com/Kadphol/go-http/migration"
 )
 
 type Application struct {
@@ -21,6 +22,10 @@ func NewApplication() (*Application, error) {
 	pgDB, err := store.Open()
 	if err != nil {
 		return nil, err
+	}
+	err = store.MigrateFS(pgDB, migration.FS, ".")
+	if err != nil {
+		panic(err)
 	}
 	logger := log.New(os.Stdout, "app: ", log.Ldate|log.Ltime)
 

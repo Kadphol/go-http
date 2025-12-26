@@ -1,11 +1,12 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS workouts (
 	id BIGSERIAL PRIMARY KEY,
-	username VARCHAR(255) UNIQUE NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	password_hash VARCHAR(255) NOT NULL,
-	bio TEXT,
+	-- user_id
+	title VARCHAR(255) NOT NULL,
+	description TEXT,
+	duration_minutes INTEGER NOT NULL,
+	calories_burned INTEGER,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -13,5 +14,5 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS workouts;
 -- +goose StatementEnd
