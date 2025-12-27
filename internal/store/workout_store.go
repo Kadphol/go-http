@@ -39,7 +39,7 @@ type WorkoutStore interface {
 }
 
 func (pg *PostgresWorkoutStore) CreateWorkout(workout *Workout) (*Workout, error) {
-	tx, err := pg.DB.Begin()
+	tx, err := pg.db.Begin()
 	if err != nil {
 		return nil, err
 	}
@@ -69,6 +69,6 @@ func (pg *PostgresWorkoutStore) CreateWorkout(workout *Workout) (*Workout, error
 }
 
 func (pg *PostgresWorkoutStore) GetWorkoutByID(id int64) (*Workout, error) {
-	workout := &WorkOut{}
+	workout := &Workout{}
 	return workout, nil
 }
