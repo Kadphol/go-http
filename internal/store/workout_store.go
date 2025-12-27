@@ -99,7 +99,7 @@ func (pg *PostgresWorkoutStore) GetWorkoutByID(id int64) (*Workout, error) {
 	defer rows.Close()
 
 	for rows.Next() {
-		entry := &WorkoutEntry{}
+		var entry WorkoutEntry
 		err := rows.Scan(
 			&entry.ID,
 			&entry.ExerciseName,
